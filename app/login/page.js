@@ -12,7 +12,7 @@ export default function Login() {
   const handleSignIn = async () => {
     await supabase.auth.signInWithPassword({
       email: "tino@ambrecht.de",
-      password: "Lavera@1353",
+      password: "",
     });
     router.refresh();
   };
