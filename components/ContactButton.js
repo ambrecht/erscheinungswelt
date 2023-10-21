@@ -1,0 +1,42 @@
+import styled from 'styled-components';
+import { TextGradient, MediaWidth, ButtonGradient } from '../Mixins/Mixins';
+
+//LOGIC
+
+//MARKUP
+export default function ContactButton({ children, fontsize }) {
+  return (
+    <Button size={fontsize}>
+      <span>
+        <Text>{children}</Text>
+      </span>
+    </Button>
+  );
+}
+
+//STYLE
+
+const Text = styled.span`
+  ${TextGradient}
+  font-weight: 600;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+`;
+const Button = styled.button`
+  cursor: inherit;
+  font-size: ${(props) => `${props.size}em`};
+  padding: 1em 1em;
+  margin-right: 4vh;
+  margin-top: 1vw;
+  border-radius: 3em;
+  border: solid 0.2em transparent;
+  ${ButtonGradient};
+
+  &:hover {
+    box-shadow: none;
+    ${Text} {
+      color: white;
+    }
+  }
+`;
