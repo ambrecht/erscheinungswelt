@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react"
-import * as THREE from "three" // Direkter Import von three.js
-import Canvas from "./scene/Canvas"
-import styled from "styled-components"
+import React, { useEffect, useRef, useState } from 'react';
+import * as THREE from 'three'; // Direkter Import von three.js
+import Canvas from './scene/Canvas';
+import styled from 'styled-components';
+import data from '../../app/imageData';
 
 const BackgroundCanvas = styled.div`
   position: fixed;
@@ -10,29 +11,22 @@ const BackgroundCanvas = styled.div`
   width: 100%;
   height: 100%;
   z-index: -100;
-`
-
-
-
+`;
 
 const Scene = () => {
-  const [backgroundLoaded, setBackgroundLoaded] = useState(false)
-  const canvasRef = useRef(null)
+  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const initializeThree = () => {
       if (canvasRef.current) {
-        Canvas(THREE, canvasRef.current, () => setBackgroundLoaded(true))
+        Canvas(THREE, canvasRef.current, () => setBackgroundLoaded(true), data);
       }
-    }
-    initializeThree()
-  }, [])
+    };
+    initializeThree();
+  }, []);
 
-  return (
-  
-      <BackgroundCanvas ref={canvasRef}></BackgroundCanvas>
-  
-  )
-}
+  return <BackgroundCanvas ref={canvasRef}></BackgroundCanvas>;
+};
 
-export default Scene
+export default Scene;
