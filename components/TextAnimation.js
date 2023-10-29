@@ -6,7 +6,7 @@ import { TextGradient, MediaWidth, ButtonGradient } from '../Mixins/Mixins';
 export default function TextAnimation(props) {
   return (
     <Wrapper>
-      <Typewriter
+      <StyledTypewriter
         options={{
           strings: props.children.split(' '),
           pauseFor: 10000,
@@ -20,6 +20,10 @@ export default function TextAnimation(props) {
 }
 
 const Wrapper = styled.span`
-  display: inline;
+  display: inline-block;
   ${TextGradient};
 `;
+
+const StyledTypewriter = styled(Typewriter)`
+display: inline-block;
+`

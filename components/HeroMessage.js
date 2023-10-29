@@ -1,48 +1,36 @@
 import styled, { css } from 'styled-components';
-import { useWindowSize } from 'web-api-hooks';
 
 import TextAnimation from './TextAnimation';
 
 //MARKUP
-export default function MARKUP(props) {
-  const [windowWidth, windowHeight] = useWindowSize();
+export default function MARKUP({className} ) {
 
   return (
-    <>
-      <HeroH1 windowWidth={windowWidth}>
-        Hier werden Ihre Produkte zum digitalen
+    <HeroContainer className={className}>
+      <HeroH1 >
+        hier werden Ihre Produkte zum digitalen{' '}
         <TextAnimation>Erfolg Erlebnis Eindruck</TextAnimation>
       </HeroH1>
 
-      <HeroP>analytisches Denken trifft auf kreative Imagination...</HeroP>
-    </>
+      
+    </HeroContainer>
   );
 }
 
 //STYLE
 
 const HeroH1 = styled.h1`
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  font-weight: light;
-
-  max-width: 1900px;
+  
+  font-weight: 800;
   margin: 0;
-  padding-top: 1em;
   color: white;
   text-align: left;
-  z-index: 10;
-  height: 100%;
+font-size: 5rem;
+  text-transform: lowercase;
+ 
+  
 
-  font-size: clamp(2rem, 4vw, 5rem); /* Reduced max to 4rem */
 
-  @media only screen and (max-height: 700px) {
-    font-size: clamp(1rem, 3vh, 4rem); /* Reduced max to 4rem */
-    width: 61.8vw;
-  }
 `;
 
 const HeroP = styled.h4`
@@ -62,4 +50,8 @@ const HeroP = styled.h4`
     font-weight: 200;
     width: 61.8vw;
   }
+`;
+
+const HeroContainer = styled.div`
+
 `;

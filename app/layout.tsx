@@ -1,34 +1,26 @@
-//workspaces/ambrecht2023/app/layout.tsx
-'use client'
-import { RecoilRoot } from 'recoil';
-import { ThemeProvider } from 'styled-components';
-import { Footer } from '@/components/Footer';
-import StyledComponentsRegistry from '@/lib/registry';
-import { GlobalStyle, theme } from '@/styles';
-import Navigation from  '@/components/Navigation'
+import ClientWrapper from '@/components/ClientWrapper'
+import Navigation from '@/components/Navigation'
+import { Poppins } from 'next/font/google'
+ 
+const popp = Poppins(
+  {weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ['latin'],
+  style: 'normal',
+  display: 'swap',
+});
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+import StyledComponentsRegistry from './registry'
+
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html>
+    <html lang="en" className={popp.className}>
       <head />
-      <body>
-        
-          <RecoilRoot>
-            <StyledComponentsRegistry>
-              <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <Navigation></Navigation>
-                {children}
-                <Footer />
-              </ThemeProvider>
-            </StyledComponentsRegistry>
-          </RecoilRoot>
-       
+      <body >
+        <StyledComponentsRegistry>
+        <Navigation ></Navigation>
+          {children}
+        </StyledComponentsRegistry>
       </body>
     </html>
-  );
-};
-
-export default RootLayout;
-
-
+  )
+}

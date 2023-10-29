@@ -5,6 +5,7 @@ import { TextGradient, MediaWidth, ButtonGradient } from '../Mixins/Mixins';
 
 //MARKUP
 export default function ContactButton({ children, fontsize }) {
+  console.log(fontsize)
   return (
     <Button size={fontsize}>
       <span>
@@ -19,18 +20,16 @@ export default function ContactButton({ children, fontsize }) {
 const Text = styled.span`
   ${TextGradient}
   font-weight: 600;
-  line-height: 1em;
-  letter-spacing: 0.1em;
+  line-height: 1rem;
+  letter-spacing: 0.1rem;
   text-transform: lowercase;
 `;
 const Button = styled.button`
   cursor: inherit;
-  font-size: ${(props) => `${props.size}em`};
-  padding: 1em 1em;
-  margin-right: 4vh;
-  margin-top: 1vw;
-  border-radius: 3em;
-  border: solid 0.2em transparent;
+  font-size: ${(props) => `${props.size}rem`};
+  padding: 1rem 1rem;
+  border-radius: 3rem;
+  border: solid 0.2rem transparent;
   ${ButtonGradient};
 
   &:hover {

@@ -1,9 +1,8 @@
+'use client'
 import styled from 'styled-components';
 import Link from 'next/link';
 import Logo from './Logo';
 import ContactButton from './ContactButton';
-import Burger from '../components/Burger/Index';
-import { useWindowSize } from 'web-api-hooks';
 
 // Navigation Item component
 const NavItem = ({ href, label }) => (
@@ -15,51 +14,40 @@ const NavItem = ({ href, label }) => (
 );
 
 const Navigation = () => {
-  const [windowWidth] = useWindowSize();
-
-  return windowWidth <= 800 ? (
-    <MobileNav>
-      <Logo />
-      <Burger />
-    </MobileNav>
-  ) : (
+  return (
     <NavContainer>
+      <Grid>
       <Logo />
       <NavList>
         <NavItem href="/mission" label="Vision" />
         <NavItem href="/prozess" label="Prozess" />
         <NavItem href="/arbeit" label="Werkstatt" />
       </NavList>
-      <div className="contact-container">
-        <Link href="/contact" passHref>
-          
-            <ContactButton>kontakt</ContactButton>
-          
-        </Link>
-      </div>
+      <Gridelement>
+      <Link href="/contact" passHref>
+        <ContactButton fontsize={1.8}>kontakt</ContactButton>
+      </Link>
+      </Gridelement>
+      </Grid>
     </NavContainer>
   );
 };
 
-const NavContainer = styled.nav`
+const NavContainer = styled.header`
+  padding-top: 3.5rem;
+  opacity: 1;
+  mix-blend-mode: difference;
+  color: var(--dark);
   width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 20;
-
-  @media (max-width: 1300px) {
-    gap: 5%;
-    font-size: 0.9em;
-  }
+  z-index: 999;
+  top: 0;
+  left: 0;
+  position: fixed;
 
   a {
-    display: block;
     text-decoration: none;
     list-style-type: none;
     color: ${({ theme }) => theme.colors.text};
-
     text-transform: lowercase;
   }
 
@@ -68,48 +56,33 @@ const NavContainer = styled.nav`
     transition-property: all;
     transition-duration: 0.2s;
   }
-  & .logo-container {
-    margin-right: auto;
 
-    a {
-      padding: 0;
-      width: 10em;
-    }
+  
 
-    @media (max-height: 600px) {
-      font-size: 0.9em;
-    }
-  }
-
-  .contact-container {
-    margin-left: auto;
-    font-size: 0.7em;
-    a {
-      padding: 0;
-    }
-    @media (max-height: 600px) {
-      font-size: 0.7em;
-    }
-  }
+  
 `;
 
-const MobileNav = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  padding-left: 5.8rem;
+  padding-right: 5.8rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;  // Vertikale Ausrichtung
+
+  `
 
 const NavList = styled.ul`
-  width: 100%;
+   grid-column: 5 / span 4;  // Zentrierte Positionierung im Grid
   display: flex;
-  gap: 20%;
+  gap: 6rem;  // Ein konstanter Abstand, aber natürlich anpassbar
   list-style: none;
-  padding: 0;
-  margin: 0 auto;
+  margin: 0;
   justify-content: center;
   align-items: center;
-  font-size: 2vh;
+  font-size: 1.8rem;
 `;
 
 const StyledLi = styled.li`
@@ -123,5 +96,8 @@ const StyledLi = styled.li`
     }
   }
 `;
+const Gridelement = styled.div`
+ grid-column: 11/auto;
+`
 
 export default Navigation;
