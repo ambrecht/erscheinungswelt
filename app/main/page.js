@@ -1,28 +1,16 @@
 'use client';
 
 import styled from 'styled-components';
-import HeroMessage from '@/components/HeroMessage';
 import Image from 'next/image';
 import Workspace1 from '@/public/Brutalist/work3333.png';
 import Workspace2 from '@/public/Brutalist/work3333slice_02.png';
 import Workspace3 from '@/public/Brutalist/work3333slice_03.png';
 import Scene from '@/components/ThreeScene/index';
+import RadicalSVGAnimator from '../../components/SVGAnimator';
+import NewsTicker from '../../components/Newsticker';
 
 const Home = () => {
-  return (
-    <SiteGrid>
-      <Scene></Scene>
-      <StyledHeroMessage></StyledHeroMessage>
-      <Imagecontainer>
-        <Slice1
-          src="/Brutalist/work3333.png"
-          width={500}
-          height={500}
-          alt="Picture of the author"
-        />
-      </Imagecontainer>
-    </SiteGrid>
-  );
+  return <NewsTicker></NewsTicker>;
 };
 
 export default Home;
@@ -35,16 +23,10 @@ const SiteGrid = styled.div`
   max-width: 100vw;
   max-height: 100vh;
   padding-top: 20rem;
-  position: relative; // Damit können wir die z-index-Eigenschaft für die Kinder verwenden
+  position: relative;
+  mix-blend-mode: difference; // Damit können wir die z-index-Eigenschaft für die Kinder verwenden
   padding-left: 5.8rem;
   padding-right: 5.8rem;
-`;
-
-const StyledHeroMessage = styled(HeroMessage)`
-  grid-column: 2 / 3;
-  grid-row: 2/-1;
-
-  z-index: 2;
 `;
 
 const Imagecontainer = styled.div`
